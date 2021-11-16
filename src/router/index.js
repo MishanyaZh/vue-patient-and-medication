@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import PatientsList from '../views/PatientsList.vue';
+import MedicineList from '../views/MedicineList.vue';
 
 Vue.use(VueRouter);
 
@@ -9,6 +10,11 @@ const routes = [
     path: '/',
     name: 'PatientsList',
     component: PatientsList,
+  },
+  {
+    path: '/medicine',
+    name: MedicineList,
+    component: MedicineList,
   },
   // {
   //   path: "/about",
