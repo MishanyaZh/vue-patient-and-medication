@@ -5,7 +5,6 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "predeploy": "npm run build",
     "deploy": "netlify deploy -p",
     "lint": "vue-cli-service lint",
     "prepare": "husky install"
@@ -58,6 +57,7 @@
     "not dead"
   ],
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "*.{js,jsx}": "eslint --cache --fix",
+    "*.{js,css,md,jsx,vue}": "prettier --write"
   }
 }
