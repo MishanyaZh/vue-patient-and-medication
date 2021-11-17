@@ -1,0 +1,28 @@
+.home {
+}
+.patients-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5px;
+  border: 1px solid black;
+
+  &__patient {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+
+  &__med {
+    display: flex;
+    flex-direction: column;
+  }
+}
