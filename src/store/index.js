@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axiosInstance from '@/api/routes';
-import { PATIENTS } from '@/api/index';
+import { PATIENTS, MEDICINE } from '@/api/index';
 
 Vue.use(Vuex);
 
@@ -15,6 +15,9 @@ export default new Vuex.Store({
     setPatients(state, { patients }) {
       state.patients = patients;
     },
+    setMedicine(state, { medicine }) {
+      state.medicine = medicine;
+    },
   },
   actions: {
     fetchPatients({ commit }) {
@@ -22,21 +25,31 @@ export default new Vuex.Store({
         .get(PATIENTS)
         .then(res => {
           const { data } = res;
-          console.log(data);
+          // console.log(data);
           commit('setPatients', { patients: data });
         })
         .catch(err => console.log(err));
     },
+    fetchMedicine({ commit }) {
+      return axiosInstance
+        .get(MEDICINE)
+        .then(res => {
+          const { data } = res;
+          console.log(data);
+          commit('setMedicine', { medicine: data });
+        })
+        .catch(err => console.log(err));
+    },
   },
-  // getters: {
-  //   getPatientById: state => id => {
-  //     const isPatients = state.patients;
-  //     console.log(state.patients);
-  //     if (isPatients) {
-  //       return isPatients.find(patient => patient.id === id);
-  //     }
-  //     return null;
-  //   },
-  // },
+  getters: {
+    getPatientById: state => id => {
+      const isPatients = state.patients;
+      console.log(state.patients);
+      if (isPatients) {
+        return isPatients.find(patient => patient.id === id);
+      }
+      return null;
+    },
+  },
   modules: {},
 });

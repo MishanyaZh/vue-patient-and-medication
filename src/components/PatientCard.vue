@@ -1,13 +1,13 @@
 <template>
-  <div class="card">
-    <div class="card__patient">
-      <span>{{ patient.name }} {{ patient.lastName }}</span>
-      <span>Adress: {{ patient.adress }}</span>
-      <span>Age: {{ patient.age }}</span>
-      <span>Tell: {{ patient.phoneNumber }}</span>
-      <span>Gender: {{ patient.gender }}</span>
-    </div>
-    <div class="card__med">medicament</div>
+  <div class="card-patient">
+    <span>{{ patient.name }} {{ patient.lastName }}</span>
+    <span>Adress: {{ patient.adress }}</span>
+    <span>Age: {{ patient.age }}</span>
+    <span>Tell: {{ patient.phoneNumber }}</span>
+    <span>Gender: {{ patient.gender }}</span>
+    <!-- <span v-if="medicine.map(med => med.patientIds.map(patientIds =>pat.include(patient.id)))">
+      {{ medicine.medicationName }}
+    </span> -->
   </div>
 </template>
 
@@ -17,6 +17,10 @@ export default {
   props: {
     patient: {
       type: Object,
+      required: true,
+    },
+    medicine: {
+      // type: Object,
       required: true,
     },
   },
