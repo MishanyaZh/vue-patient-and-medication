@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     app-Hello!!!
-    <FilterBtns />
+    <FilterBtns @filter="filter" :activeFilterBtn="activeFilterBtn" />
     <PatientsList :patients="patients" />
     <!-- <router-view /> -->
   </div>
@@ -22,8 +22,8 @@ export default {
   data() {
     return {
       patients: [],
-      filterPatients: [],
-      // activeFilterBtn: " ",
+      allPatients: [],
+      activeFilterBtn: 'all',
     };
   },
   methods: {
@@ -32,7 +32,7 @@ export default {
         const patientsWithMedicine = [];
         const patientsResponse = await axiosInstance.get(PATIENTS);
         const patientsData = patientsResponse.data;
-        console.log('patientsData', patientsData);
+        // console.log('patientsData', patientsData);
 
         const medicineResponse = await axiosInstance.get(MEDICINE);
         const medicineData = medicineResponse.data;
@@ -51,9 +51,29 @@ export default {
           });
         });
         this.patients = patientsWithMedicine;
+        this.allPatients = patientsWithMedicine;
         console.log('patientsWithMedicine', this.patients);
       } catch (error) {
         console.log(error);
+      }
+    },
+    filter(evt) {
+      this.activeFilterBtn = evt.target.name;
+      switch (evt.target.name) {
+        case '30+':
+          this.patients = this.allPatients;
+          this.patients = this.patients.filter(
+            patient => patient.patientData.age > 30,
+          );
+          break;
+        case 'strength':
+          this.patients = this.allPatients;
+          this.patients = this.patients.filter(
+            patient => patient.patientData.age < 63,
+          );
+          break;
+        default:
+          this.patients = this.allPatients;
       }
     },
   },
