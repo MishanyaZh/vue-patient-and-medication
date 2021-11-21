@@ -2,7 +2,7 @@
   <div class="filterbtn-box">
     <button @click="filter" name="all">ALL</button>
     <button @click="filter" name="30+">30+</button>
-    <button @click="filter" name="strength">STRENGTH</button>
+    <button @click="filter" name="strength">-63</button>
   </div>
 </template>
 

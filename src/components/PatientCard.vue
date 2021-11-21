@@ -1,11 +1,11 @@
 <template>
   <li class="card-patient">
     <span>
-      {{ index + 1 }}. {{ patient.patientData.name }}
-      {{ patient.patientData.lastName }}
+      {{ index + 1 }}. {{ patient.name }}
+      {{ patient.lastName }}
     </span>
     <span>
-      <span>Age: {{ patient.patientData.age }} years old.</span>
+      <span>Age: {{ patient.age }} years old.</span>
     </span>
     <!-- <span>Tell: {{ patient.patientData.phoneNumber }}</span>
     <span>Adress: {{ patient.patientData.adress }}</span> -->

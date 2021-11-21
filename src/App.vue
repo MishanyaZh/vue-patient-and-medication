@@ -46,7 +46,7 @@ export default {
             }
           });
           patientsWithMedicine.push({
-            patientData: { ...patient },
+            ...patient,
             patientMedicine: patientMedicine,
           });
         });
@@ -62,14 +62,18 @@ export default {
       switch (evt.target.name) {
         case '30+':
           this.patients = this.allPatients;
-          this.patients = this.patients.filter(
-            patient => patient.patientData.age > 30,
-          );
+          this.patients = this.patients.filter(patient => patient.age > 30);
           break;
         case 'strength':
           this.patients = this.allPatients;
+          //  const bla = this.patients.filter(patient => patient.age < 63);
+          // patStr.map(patient => patient.patientMedicine.map(med => med.strength > 8));
+          // this.patients = patStr;
+          // this.patients.filter(patient => patient.age < 63 && patient.patientMedicine.filter(med=> med.strength >= 8));
           this.patients = this.patients.filter(
-            patient => patient.patientData.age < 63,
+            patient =>
+              patient.age < 63 &&
+              patient.patientMedicine.map(med => med.strength >= 8),
           );
           break;
         default:
