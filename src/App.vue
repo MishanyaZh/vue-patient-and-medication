@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    app-Hello!!!
+  <div id="app" class="app">
+    <h1 class="header">PATIENTS AND MEDICINE</h1>
     <FilterBtns @filter="filter" :activeFilterBtn="activeFilterBtn" />
     <PatientsList :patients="patients" />
     <!-- <router-view /> -->
@@ -36,7 +36,7 @@ export default {
 
         const medicineResponse = await axiosInstance.get(MEDICINE);
         const medicineData = medicineResponse.data;
-        console.log('medicineData', medicineData);
+        // console.log('medicineData', medicineData);
 
         patientsData.map(patient => {
           const patientMedicine = [];
@@ -52,33 +52,42 @@ export default {
         });
         this.patients = patientsWithMedicine;
         this.allPatients = patientsWithMedicine;
-        console.log('patientsWithMedicine', this.patients);
+        // console.log('patientsWithMedicine', this.patients);
       } catch (error) {
         console.log(error);
       }
     },
     filter(evt) {
       this.activeFilterBtn = evt.target.name;
+      const result = [];
       switch (evt.target.name) {
         case '30+':
           this.patients = this.allPatients;
           this.patients = this.patients.filter(patient => patient.age > 30);
           break;
         case 'strength':
+          // console.log(result);
           this.patients = this.allPatients;
-          //  const bla = this.patients.filter(patient => patient.age < 63);
-          // patStr.map(patient => patient.patientMedicine.map(med => med.strength > 8));
-          // this.patients = patStr;
-          // this.patients.filter(patient => patient.age < 63 && patient.patientMedicine.filter(med=> med.strength >= 8));
-          this.patients = this.patients.filter(
-            patient =>
-              patient.age < 63 &&
-              patient.patientMedicine.map(med => med.strength >= 8),
-          );
+          this.patients.filter(patient => {
+            if (patient.age < 63) {
+              patient.patientMedicine.filter(p => {
+                if (p.strength > 8) {
+                  result.push(patient);
+                }
+              });
+            }
+          });
+          this.patients = result.filter((item, pos, self) => {
+            return self.indexOf(item) == pos;
+          });
           break;
         default:
           this.patients = this.allPatients;
+          this.scrollToTop();
       }
+    },
+    scrollToTop() {
+      window.scrollTo(0, 0);
     },
   },
   created() {

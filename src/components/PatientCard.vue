@@ -7,9 +7,6 @@
     <span>
       <span>Age: {{ patient.age }} years old.</span>
     </span>
-    <!-- <span>Tell: {{ patient.patientData.phoneNumber }}</span>
-    <span>Adress: {{ patient.patientData.adress }}</span> -->
-
     <ul v-for="medicine in patient.patientMedicine" :key="medicine.id">
       <li key="{medicine.id}">
         {{ medicine.medicationName }}, ({{ medicine.strength + medicine.unit }})
