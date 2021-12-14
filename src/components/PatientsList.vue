@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="patients-list">
     <PatientCard
       :key="patient.id"
       v-for="(patient, index) in patients"

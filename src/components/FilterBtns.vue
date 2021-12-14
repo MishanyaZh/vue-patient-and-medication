@@ -1,8 +1,10 @@
 <template>
   <div class="filterbtn-box">
-    <button @click="filter" name="all">ALL</button>
-    <button @click="filter" name="30+">30+</button>
-    <button @click="filter" name="strength">-63</button>
+    <button class="filterbtn" @click="filter" name="all">All patients</button>
+    <button class="filterbtn" @click="filter" name="30+">30+ years old</button>
+    <button class="filterbtn" @click="filter" name="strength">
+      -63 strength > 8
+    </button>
   </div>
 </template>
 
